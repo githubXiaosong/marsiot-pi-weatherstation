@@ -1,0 +1,17 @@
+/deploy
+/target
+/.gradle/
+/build/
+/.settings/
+/.classpath
+/.project
+*.class
+*.sw*
+
+# Package Files #
+#*.jar
+*.war
+*.ear
+*.o
+
+nohup.out
