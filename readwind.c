@@ -1,10 +1,11 @@
 // to compile: gcc i2c-analog.c -o i2c-analog -lncurses
 #include <stdio.h>
 #include <fcntl.h>
+#include <math.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
-//#include <ncurses.h>
 
 
 // SCL -->  SCL1(PIN 05)
@@ -29,17 +30,9 @@ int main(int argc, char **argv)
 	useconds_t delay = 2000;
 	char *dev = "/dev/i2c-1";
 	int addr = 0x48;
-	int i, j, k, key, new_val, val_mod, cnt, nb, flag;
-	int newR;
+	int i, j, val_mod, cnt, flag;
 
 	flag = 0;
-	//initscr();
-	//noecho();
-	//cbreak();
-	//nodelay(stdscr, true);
-	//curs_set(0);
-	//printf("PCF8591\n");
-	//mvaddstr(5, 0, "Brightness");
 
 	/*
 	 * 100
@@ -48,14 +41,12 @@ int main(int argc, char **argv)
 	for (i = 0; i < 128; i++)
 	{
 		val_mod = i % 100;
-		//move(2, i + 12);
 		if (val_mod == 0 || flag == 1)
 		{
 			if (flag != 1)
 			{
 				if (cnt != 0)
 				{
-					//printw("%d", cnt);
 					flag = 1;
 				}
 				cnt++;
@@ -65,7 +56,7 @@ int main(int argc, char **argv)
 				j = i % 10;
 				if (j == 0 || j == 5) {
 					//addch('1');
-                }
+				}
 			}
 		}
 	}
@@ -81,8 +72,6 @@ int main(int argc, char **argv)
 		{
 			if (cnt != 0)
 			{
-				nb = cnt % 10;
-				//printw("%d", nb);
 			}
 			cnt++;
 		}

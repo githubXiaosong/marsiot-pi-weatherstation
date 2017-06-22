@@ -6,5 +6,5 @@ cd ./bin
 jar -cvf marsiot-pi-sdk.jar ./com
 
 cd ../
-gcc -o readwind ./readwind.c
 gcc -Wall -o readtemp ./readtemp.c -lwiringPi
+gcc -Wall -o readwind ./readwind.c -lwiringPi

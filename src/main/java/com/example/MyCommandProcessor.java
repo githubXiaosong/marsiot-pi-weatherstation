@@ -67,14 +67,14 @@ public class MyCommandProcessor extends BaseCommandProcessor {
     public void readTemp(IDeviceEventOriginator originator) throws MarsiotAgentException {
         System.out.print("read temp! \n");
 
-        if (!getModelName().equalsIgnoreCase("YRZC-WEATHER")) {
-            try {
+        if (!getModelName().equalsIgnoreCase("DEMO-WEATHER")) {
+            /*try {
                 sendAlert(getHardwareId(), "MESSAGE", "method readTemp unsupported!", null); 
             } catch (MarsiotAgentException e) {
             }
 
             sendAck(getHardwareId(), "Acknowledged.", originator);
-            return;
+            return;*/
         }
 
         String cmd = "sudo ./readtemp";
@@ -93,6 +93,7 @@ public class MyCommandProcessor extends BaseCommandProcessor {
             humidity = values[0].substring(3);
             temprature = values[1].substring(5);
         }
+        System.out.print("temprature:"+temprature+" humidity:"+humidity+"\n");
 
         cmd = "sudo ./readwind";
         String wind = "";
